@@ -16,6 +16,32 @@
 @import url("https://cdn.jsdelivr.net/gh/n00bcodr/jellyfish@main/progress_bar.css");
 @import url("https://cdn.jsdelivr.net/gh/n00bcodr/jellyfish@main/10.11_fixes.css");
 
+/* ~~~~~~~~~~~~~~~~~~~~ LOGIN PAGE BUTTONS ~~~~~~~~~~~~~~~~~~~~ */
+.readUserName {
+    color: var(--text-color) !important;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
+
+#loginPage .emby-button,
+#loginPage .raised,
+.loginPage .emby-button,
+.loginPage .raised {
+    background: rgba(20, 34, 65, 0.75) !important;
+    color: var(--text-color) !important;
+    border: 1px solid rgba(200, 210, 230, 0.15) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: var(--rounded-cards) !important;
+}
+
+#loginPage .emby-button:hover,
+#loginPage .raised:hover,
+.loginPage .emby-button:hover,
+.loginPage .raised:hover {
+    background: rgba(60, 100, 200, 0.5) !important;
+    border-color: rgba(120, 170, 255, 0.3) !important;
+    box-shadow: 0 0 16px var(--glow-color) !important;
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~ GLOBAL CSS VARIABLES ~~~~~~~~~~~~~~~~~~~~ */
 :root {
     --theme-updated-on: "13 April 2025";
