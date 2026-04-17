@@ -286,21 +286,6 @@ button.raised.btnRefresh.emby-button, .button-reset { background: #4a3ab5 !impor
 #skipIntro .emby-button { background: rgba(10, 15, 30, 0.75) !important; }
 #btnCancel, #btnResetPassword, .button-cancel { background: rgba(140, 60, 60, 0.85) !important; }
 
-/* ~~~~~~~~~~~~~~~~~~~~ GENERAL BACKGROUNDS ~~~~~~~~~~~~~~~~~~~~ */
-.backgroundContainer:not(.withBackdrop):not(.backgroundContainer-transparent),
-.noBackdropTransparency .detailPageSecondaryContainer {
-    background-color: var(--secondary-background-transparent) !important;
-}
-
-.libraryDocument.withSectionTabs .backgroundContainer {
-    backdrop-filter: blur(var(--blur)) brightness(.25) !important;
-    background-color: var(--secondary-background-transparent);
-}
-
-.libraryDocument.withSectionTabs .backdropImage {
-    display: block !important;
-}
-
 /* ~~~~~~~~~~~~~~~~~~~~ DRAWER & DIALOG BACKGROUNDS ~~~~~~~~~~~~~~~~~~~~ */
 .layout-desktop .mainDrawer,
 .layout-mobile .mainDrawer,
