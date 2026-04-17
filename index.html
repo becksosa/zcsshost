@@ -51,9 +51,9 @@
     color: rgba(200, 210, 255, 0.18); text-transform: uppercase;
     animation: fadeblink 4s ease-in-out infinite; z-index: 2;
   }
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
   }
   @keyframes glowpulse {
     0%, 100% { opacity: 0.6; transform: scale(1); }
