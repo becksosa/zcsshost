@@ -1,72 +1,47 @@
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  .seerr-container {
-    display: flex; flex-direction: column; align-items: center;
-    justify-content: center; text-align: center;
-    position: fixed; inset: 0; gap: 20px;
-    font-family: 'Outfit', 'Segoe UI', sans-serif;
-    background: #0a0a0f;
-    overflow: hidden;
-  }
-  canvas { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
-  .glow-wrap {
-    position: relative; display: inline-flex;
-    align-items: center; justify-content: center;
-    animation: pulse 3s ease-in-out infinite;
-    z-index: 2;
-  }
-  .glow-blob {
-    position: absolute;
-    width: 1200px; height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(ellipse at center, rgba(90,110,255,0.28) 0%, rgba(80,100,255,0.08) 40%, transparent 70%);
-    animation: glowpulse 8s ease-in-out infinite;
-    pointer-events: none;
-    filter: blur(40px);
-  }
-  .main-btn {
-    display: inline-block; padding: 18px 48px;
-    font-size: 22px; font-weight: 500; letter-spacing: 0.04em;
-    color: #e8eaf6;
-    background: rgba(120, 140, 255, 0.1);
-    border: 1px solid rgba(120, 140, 255, 0.3);
-    border-radius: 50px; cursor: pointer; text-decoration: none;
-    position: relative; z-index: 2;
-    transition: background 0.3s, border-color 0.3s;
-  }
-  .main-btn:hover {
-    background: rgba(120, 140, 255, 0.2);
-    border-color: rgba(160, 180, 255, 0.6);
-  }
-  .instructions {
-    font-size: 14px; font-weight: 400;
-    color: rgba(200, 210, 255, 0.4);
-  }
-  .footnote {
-    position: fixed; bottom: 20px;
-    font-size: 11px; letter-spacing: 0.12em;
-    color: rgba(200, 210, 255, 0.18); text-transform: uppercase;
-    animation: fadeblink 4s ease-in-out infinite; z-index: 2;
-  }
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.04); }
-  }
-  @keyframes glowpulse {
-    0%, 100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.08); }
-  }
-  @keyframes fadeblink {
-    0%, 100% { opacity: 0.9; }
-    50% { opacity: 0.99; }
-  }
+}
 </style>
 <div class="seerr-container">
-  <div class="glow-wrap">
-    <div class="glow-blob"></div>
-    <a class="main-btn" href="http://re.quest" target="_blank">EXPLORE NEW CONTENT</a>
-  </div>
-  <div class="instructions">Log in to Seerr with your Sosa Studios username and password - request any movie or show</div>
-  <div class="footnote">piracy by professionals - sosa industries™</div>
+  <canvas id="c"></canvas>
+<div class="glow-wrap">
+<div class="glow-blob"></div>
+<a class="main-btn" href="http://re.quest" target="_blank">EXPLORE NEW CONTENT</a>
 </div>
+<div class="instructions">Log in to Seerr with your Sosa Studios username and password - request any movie or show</div>
+<div class="footnote">piracy by professionals - sosa industries™</div>
+</div>
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', resize);
+function rand(a, b) { return a + Math.random() * (b - a); }
+for (let i = 0; i < 80; i++) {
+  particles.push({
+    x: rand(0,1), y: rand(0,1),
+    size: rand(0.5, 2.2),
+    speedX: rand(-0.00015, 0.00015),
+    speedY: rand(-0.0002, -0.00005),
+    opacity: rand(0.1, 0.6),
+    opacityDir: rand(-0.002, 0.002),
+  });
+}
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  for (const p of particles) {
+    p.x += p.speedX; p.y += p.speedY;
+    p.opacity += p.opacityDir;
+    if (p.opacity <= 0.05 || p.opacity >= 0.65) p.opacityDir *= -1;
+    if (p.y < -0.02) p.y = 1.02;
+    if (p.x < -0.02) p.x = 1.02;
+    if (p.x > 1.02) p.x = -0.02;
+    ctx.beginPath();
+    ctx.arc(p.x * W, p.y * H, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(160, 180, 255, ${p.opacity})`;
+    ctx.fill();
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
