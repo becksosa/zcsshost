@@ -63,7 +63,6 @@
   }
 </style>
 <div class="seerr-container">
-  <canvas id="c"></canvas>
   <div class="glow-wrap">
     <div class="glow-blob"></div>
     <a class="main-btn" href="http://re.quest" target="_blank">EXPLORE NEW CONTENT</a>
@@ -71,39 +70,3 @@
   <div class="instructions">Log in to Seerr with your Sosa Studios username and password - request any movie or show</div>
   <div class="footnote">piracy by professionals - sosa industries™</div>
 </div>
-<script>
-const canvas = document.getElementById('c');
-const ctx = canvas.getContext('2d');
-let W, H, particles = [];
-function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
-resize();
-window.addEventListener('resize', resize);
-function rand(a, b) { return a + Math.random() * (b - a); }
-for (let i = 0; i < 80; i++) {
-  particles.push({
-    x: rand(0,1), y: rand(0,1),
-    size: rand(0.5, 2.2),
-    speedX: rand(-0.00015, 0.00015),
-    speedY: rand(-0.0002, -0.00005),
-    opacity: rand(0.1, 0.6),
-    opacityDir: rand(-0.002, 0.002),
-  });
-}
-function draw() {
-  ctx.clearRect(0, 0, W, H);
-  for (const p of particles) {
-    p.x += p.speedX; p.y += p.speedY;
-    p.opacity += p.opacityDir;
-    if (p.opacity <= 0.05 || p.opacity >= 0.65) p.opacityDir *= -1;
-    if (p.y < -0.02) p.y = 1.02;
-    if (p.x < -0.02) p.x = 1.02;
-    if (p.x > 1.02) p.x = -0.02;
-    ctx.beginPath();
-    ctx.arc(p.x * W, p.y * H, p.size, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(160, 180, 255, ${p.opacity})`;
-    ctx.fill();
-  }
-  requestAnimationFrame(draw);
-}
-draw();
-</script>
