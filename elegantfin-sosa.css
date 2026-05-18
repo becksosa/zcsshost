@@ -1,4 +1,6 @@
 @import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+@import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/assets/add-ons/media-bar-plugin-support-latest-min.css");
+
 :root{
   --loginPageBgUrl: url("<192.168.0.154:8096>/Branding/Splashscreen?format=webp&foregroundLayer=1&quality=33&width=3840&height=2160&blur=2");
 }
@@ -34,7 +36,7 @@ u/import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/assets
     margin-left: 25px !important;
     height: 60px !important;
     width: 140px !important;
-    margin-top: 30px !important;
+    margin-top: 15px !important;
 }
 
 .layout-mobile .pageTitleWithLogo {
